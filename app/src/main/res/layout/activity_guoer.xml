@@ -10,8 +10,8 @@
                                        android:layout_width="match_parent"
                                        android:layout_height="?attr/actionBarSize"
                                        android:background="@color/colorPrimary"
-                                       android:popupTheme="@style/AppTheme.popupTheme"
                                        android:theme="@style/AppTheme.theme"
+                                       app:popupTheme="@style/AppTheme.popupTheme"
                                        tools:targetApi="lollipop">
 
     </android.support.v7.widget.Toolbar>
