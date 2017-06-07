@@ -8,4 +8,7 @@
     <string name="nav_camera">Camera</string>
     <string name="profile_name">Nova</string>
     <string name="nav_mail">nova@163.com</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,18 +7,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="guoer.lf.ed.guoer.GuoerActivity">
-
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="match_parent">
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-                                           android:layout_width="match_parent"
-                                           android:layout_height="?attr/actionBarSize"
-                                           android:background="@color/colorPrimary"
-                                           android:theme="@style/AppTheme.theme"
-                                           app:popupTheme="@style/AppTheme.popupTheme">
-
-        </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     </FrameLayout>
+    <!--<FrameLayout android:layout_width="match_parent"-->
+                 <!--android:layout_height="match_parent">-->
+        <!--<android.support.v7.widget.Toolbar android:id="@+id/toolbar"-->
+                                           <!--android:layout_width="match_parent"-->
+                                           <!--android:layout_height="?attr/actionBarSize"-->
+                                           <!--android:background="@color/colorPrimary"-->
+                                           <!--android:theme="@style/AppTheme.theme"-->
+                                           <!--app:popupTheme="@style/AppTheme.popupTheme">-->
+
+        <!--</android.support.v7.widget.Toolbar>-->
+    <!--</FrameLayout>-->
     <android.support.design.widget.NavigationView android:id="@+id/navigationView"
                                                   android:layout_width="match_parent"
                                                   android:layout_height="match_parent"
