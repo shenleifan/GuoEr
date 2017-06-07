@@ -7,3 +7,9 @@
 /build
 /captures
 .externalNativeBuild
+libs/
+src/main/java/guoer/lf/ed/guoer/db/
+src/main/java/guoer/lf/ed/guoer/gson/
+src/main/java/guoer/lf/ed/guoer/service/
+src/main/java/guoer/lf/ed/guoer/utils/
+src/main/res/drawable/
