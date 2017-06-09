@@ -1,12 +1,24 @@
 package guoer.lf.ed.guoer;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import guoer.lf.ed.guoer.logUtils.LogUtils;
 
@@ -27,7 +39,7 @@ public class FruitFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String mFruitName;
     private int mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -58,17 +70,51 @@ public class FruitFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mFruitName = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getInt(ARG_PARAM2);
-            LogUtils.d(TAG, "onCreate " + mParam1 + " " + mParam2);
+            LogUtils.d(TAG, "onCreate " + mFruitName + " " + mParam2);
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fruit, container, false);
+        View view = inflater.inflate(R.layout.fragment_fruit, container, false);
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        appCompatActivity.setSupportActionBar(toolbar);
+
+        ActionBar actionBar = appCompatActivity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(mFruitName);
+//        collapsingToolbarLayout.setExpandedTitleColor();
+
+        ImageView fruitImageView = (ImageView) view.findViewById(R.id.fruit_image_view);
+        Glide.with(getActivity()).load(mParam2).into(fruitImageView);
+
+        TextView fruitDes = (TextView) view.findViewById(R.id.textView_fruitDes);
+        fruitDes.setText(generateFruitDes(mFruitName));
+
+//        WebView webView = (WebView) view.findViewById(R.id.fruit_web_view);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.loadUrl("www.baidu.com");
+        return view;
+    }
+
+    private String generateFruitDes(String fruitName) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < 100; i++) {
+            builder.append(fruitName);
+        }
+        return builder.toString();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -93,6 +139,16 @@ public class FruitFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
