@@ -16,8 +16,8 @@ public abstract class SimpleBaseActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
         if (fragment == null) {
             fragment = createFragment();
+            fragmentManager.beginTransaction().add(R.id.frame_container, fragment).commit();
         }
-        fragmentManager.beginTransaction().add(R.id.frame_container, fragment).commit();
     }
 
 }

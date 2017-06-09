@@ -9,9 +9,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import guoer.lf.ed.guoer.logUtils.LogUtils;
 
-public class GuoerActivity extends SimpleBaseActivity implements ToolBarFragment.OnFragmentInteractionListener{
+public class GuoerActivity extends SimpleBaseActivity implements MainFragment.OnFragmentInteractionListener{
     private static final String TAG = "GuoerActivity";
 //    @BindView(R.id.toolbar)
 //    Toolbar mToolbar;
@@ -31,7 +28,7 @@ public class GuoerActivity extends SimpleBaseActivity implements ToolBarFragment
 
     @Override
     protected Fragment createFragment() {
-        return ToolBarFragment.newInstance(null, null);
+        return MainFragment.newInstance(null, null);
     }
 
     @Override
