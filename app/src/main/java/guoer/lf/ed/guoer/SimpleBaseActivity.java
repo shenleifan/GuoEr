@@ -19,5 +19,4 @@ public abstract class SimpleBaseActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.frame_container, fragment).commit();
         }
     }
-
 }

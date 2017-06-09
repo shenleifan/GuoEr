@@ -41,13 +41,6 @@ public class GuoerActivity extends SimpleBaseActivity implements MainFragment.On
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void init() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator(getResources().getDrawable(android.R.drawable.ic_dialog_dialer, null));
-//        }
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,8 +48,6 @@ public class GuoerActivity extends SimpleBaseActivity implements MainFragment.On
                 return true;
             }
         });
-
-
     }
 
     @Override

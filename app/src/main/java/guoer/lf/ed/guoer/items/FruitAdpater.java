@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import guoer.lf.ed.guoer.FruitActivity;
 import guoer.lf.ed.guoer.R;
 
 public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
@@ -31,8 +32,27 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
             mContext = parent.getContext();
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.items_item, parent, false);
+        final ViewHolder holder;
+        holder = new ViewHolder(view);
 
-        return new ViewHolder(view);
+        holder.fruitName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Fruit fruit = mFruitList.get(position);
+                FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+            }
+        });
+        holder.fruitImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Fruit fruit = mFruitList.get(position);
+                FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+            }
+        });
+
+        return holder;
     }
 
     @Override
@@ -54,8 +74,10 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
         TextView fruitName;
         ImageView fruitImage;
 
+        View fruitView;
         ViewHolder(View itemView) {
             super(itemView);
+            fruitView = itemView;
             cardView = (CardView) itemView;
             fruitName = (TextView) itemView.findViewById(R.id.item_name);
             fruitImage = (ImageView) itemView.findViewById(R.id.item_image);
