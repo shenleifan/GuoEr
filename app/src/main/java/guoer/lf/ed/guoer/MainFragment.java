@@ -1,18 +1,30 @@
 package guoer.lf.ed.guoer;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import guoer.lf.ed.guoer.items.Fruit;
+import guoer.lf.ed.guoer.items.FruitAdpater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +45,11 @@ public class MainFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private FruitAdpater mAdapter;
+
+    private List<Fruit> mFruitList = new ArrayList<>();
+    private SwipeRefreshLayout mSwipRefreshLayout;
 
     public MainFragment() {
         // Required empty public constructor
@@ -63,8 +80,26 @@ public class MainFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        initData();
     }
 
+    //Test data method
+    private void initData() {
+        Fruit[] fruits = {
+                new Fruit("apple", R.drawable.apple),
+                new Fruit("orange", R.drawable.orange),
+                new Fruit("lemon", R.drawable.lemon),
+        };
+        mFruitList.clear();
+        for (int i = 0; i < 50; i++) {
+            Random random = new Random();
+            int index = random.nextInt(fruits.length);
+            mFruitList.add(fruits[index]);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,7 +127,44 @@ public class MainFragment extends Fragment {
                         .show();
             }
         });
+
+        //Handle recyclerview
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_main_fragment);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        mAdapter = new FruitAdpater(mFruitList);
+        recyclerView.setAdapter(mAdapter);
+
+        mSwipRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout_main);
+        mSwipRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary, null));
+        mSwipRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFruits();
+            }
+        });
         return view;
+    }
+
+    private void refreshFruits() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initData();
+                        mAdapter.notifyDataSetChanged();
+                        mSwipRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
