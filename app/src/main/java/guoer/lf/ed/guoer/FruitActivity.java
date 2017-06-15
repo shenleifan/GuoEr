@@ -34,13 +34,6 @@ public class FruitActivity extends SimpleBaseActivity implements FruitFragment.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guoer);
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_fruit);
-//        if (fragment == null) {
-//            fragment = createFragment();
-//            fragmentManager.beginTransaction().add(R.id.fragment_fruit, fragment).commit();
-//        }
-
     }
 
     public static void actionIntent(Context context, String fruitName, int fruitImageId) {

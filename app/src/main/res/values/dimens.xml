@@ -9,4 +9,5 @@
     <dimen name="item_image_height">100dp</dimen>
     <dimen name="cardview_default_margin">5dp</dimen>
     <dimen name="appBar_default_height">250dp</dimen>
+    <dimen name="progressWebView_radius">2dp</dimen>
 </resources>

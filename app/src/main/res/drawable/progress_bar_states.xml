@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/progressWebView_radius"/>
+
+            <gradient android:angle="270"
+                      android:centerColor="@color/progressWebView_center"
+            android:endColor="@color/progressWebView_end"
+            android:startColor="@color/progressWebView_start"/>
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="@dimen/progressWebView_radius"/>
+                <gradient android:centerColor="@color/progressWebView_progress_center"
+                android:startColor="@color/progressWebView_progress_start"
+                android:endColor="@color/progressWebView_progress_end"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

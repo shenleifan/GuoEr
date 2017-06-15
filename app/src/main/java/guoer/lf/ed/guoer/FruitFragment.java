@@ -9,14 +9,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -35,12 +36,14 @@ public class FruitFragment extends Fragment {
     private static final String TAG = "FruitFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String FRUIT_NAME = "fruit_name";
+    private static final String FRUIT_IMAGE_ID = "fruit_image_id";
+
+    private static final String URL = "http://cn.bing.com/dict/search?q=%s&FORM=BDVSP2&qpvt=%s";
 
     // TODO: Rename and change types of parameters
     private String mFruitName;
-    private int mParam2;
+    private int mFruitImageId;
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,16 +55,16 @@ public class FruitFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param fruitName    fruit name.
+     * @param fruitImageId fruit image id.
      * @return A new instance of fragment FruitFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FruitFragment newInstance(String param1, int param2) {
+    public static FruitFragment newInstance(String fruitName, int fruitImageId) {
         FruitFragment fragment = new FruitFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putInt(ARG_PARAM2, param2);
+        args.putString(FRUIT_NAME, fruitName);
+        args.putInt(FRUIT_IMAGE_ID, fruitImageId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,9 +73,9 @@ public class FruitFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mFruitName = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getInt(ARG_PARAM2);
-            LogUtils.d(TAG, "onCreate " + mFruitName + " " + mParam2);
+            mFruitName = getArguments().getString(FRUIT_NAME);
+            mFruitImageId = getArguments().getInt(FRUIT_IMAGE_ID);
+            LogUtils.d(TAG, "onCreate " + mFruitName + " " + mFruitImageId);
         }
     }
 
@@ -97,15 +100,16 @@ public class FruitFragment extends Fragment {
 //        collapsingToolbarLayout.setExpandedTitleColor();
 
         ImageView fruitImageView = (ImageView) view.findViewById(R.id.fruit_image_view);
-        Glide.with(getActivity()).load(mParam2).into(fruitImageView);
+        Glide.with(getActivity()).load(mFruitImageId).into(fruitImageView);
 
-        TextView fruitDes = (TextView) view.findViewById(R.id.textView_fruitDes);
-        fruitDes.setText(generateFruitDes(mFruitName));
-
-//        WebView webView = (WebView) view.findViewById(R.id.fruit_web_view);
-//        webView.getSettings().setJavaScriptEnabled(true);
+        WebView webView = (WebView) view.findViewById(R.id.web_view_item_des);
+        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.setWebViewClient(new WebViewClient());
-//        webView.loadUrl("www.baidu.com");
+//        webView.setWebChromeClient(new WebChromeClient());
+        LogUtils.d(TAG, "onCreateView()" + String.format(URL, mFruitName, mFruitName));
+        if (!TextUtils.isEmpty(mFruitName)) {
+            webView.loadUrl(String.format(URL, mFruitName, mFruitName));
+        }
         return view;
     }
 
