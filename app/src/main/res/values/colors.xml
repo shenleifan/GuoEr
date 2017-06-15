@@ -6,7 +6,7 @@
     <color name="progressWebView_center">#E3E3E3</color>
     <color name="progressWebView_end">#E6E6E6</color>
     <color name="progressWebView_start">#C8C8C8</color>
-    <color name="progressWebView_progress_center">#4AEA2F</color>
-    <color name="progressWebView_progress_start">#31CE15</color>
-    <color name="progressWebView_progress_end">#5FEC46</color>
+    <color name="progressWebView_progress_center">#3F51B5</color>
+    <color name="progressWebView_progress_start">#303F9F</color>
+    <color name="progressWebView_progress_end">#4169E1</color>
 </resources>

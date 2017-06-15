@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +74,7 @@ public class FruitFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mFruitName = getArguments().getString(FRUIT_NAME);
             mFruitImageId = getArguments().getInt(FRUIT_IMAGE_ID);
@@ -86,13 +89,16 @@ public class FruitFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fruit, container, false);
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.item_tool_bar);
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.setSupportActionBar(toolbar);
 
         ActionBar actionBar = appCompatActivity.getSupportActionBar();
         if (actionBar != null) {
+            LogUtils.d(TAG, "onCreateView " + actionBar);
             actionBar.setDisplayHomeAsUpEnabled(true);
+        } else {
+            LogUtils.d(TAG, "ActionBar Null");
         }
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
@@ -104,8 +110,6 @@ public class FruitFragment extends Fragment {
 
         WebView webView = (WebView) view.findViewById(R.id.web_view_item_des);
         webView.getSettings().setJavaScriptEnabled(true);
-//        webView.setWebViewClient(new WebViewClient());
-//        webView.setWebChromeClient(new WebChromeClient());
         LogUtils.d(TAG, "onCreateView()" + String.format(URL, mFruitName, mFruitName));
         if (!TextUtils.isEmpty(mFruitName)) {
             webView.loadUrl(String.format(URL, mFruitName, mFruitName));
@@ -168,5 +172,11 @@ public class FruitFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.item, menu);
     }
 }
