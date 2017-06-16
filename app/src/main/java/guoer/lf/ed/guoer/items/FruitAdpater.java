@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -15,8 +16,9 @@ import java.util.List;
 
 import guoer.lf.ed.guoer.FruitActivity;
 import guoer.lf.ed.guoer.R;
+import guoer.lf.ed.guoer.utils.NetworkUtils;
 
-public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
+public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder> {
 
     private Context mContext;
 
@@ -38,17 +40,27 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
         holder.fruitName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Fruit fruit = mFruitList.get(position);
-                FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+                if (NetworkUtils.isNetWorkAvailable(mContext)) {
+
+                    int position = holder.getAdapterPosition();
+                    Fruit fruit = mFruitList.get(position);
+                    FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+                } else {
+                    Toast.makeText(mContext, "Network unavailable! Please check network.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         holder.fruitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Fruit fruit = mFruitList.get(position);
-                FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+                if (NetworkUtils.isNetWorkAvailable(mContext)) {
+
+                    int position = holder.getAdapterPosition();
+                    Fruit fruit = mFruitList.get(position);
+                    FruitActivity.actionIntent(mContext, fruit.getFruitName(), fruit.getFruitImageId());
+                } else {
+                    Toast.makeText(mContext, "Network unavailable! Please check network.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -75,6 +87,7 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder>{
         ImageView fruitImage;
 
         View fruitView;
+
         ViewHolder(View itemView) {
             super(itemView);
             fruitView = itemView;
