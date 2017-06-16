@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import guoer.lf.ed.guoer.logUtils.LogUtils;
+import guoer.lf.ed.guoer.view.FruitFragment;
 
 public class FruitActivity extends SimpleBaseActivity implements FruitFragment.OnFragmentInteractionListener {
     private static final String TAG = "FruitActivity";

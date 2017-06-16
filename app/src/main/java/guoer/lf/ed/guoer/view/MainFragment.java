@@ -1,4 +1,4 @@
-package guoer.lf.ed.guoer;
+package guoer.lf.ed.guoer.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import guoer.lf.ed.guoer.R;
 import guoer.lf.ed.guoer.items.Fruit;
 import guoer.lf.ed.guoer.items.FruitAdpater;
 

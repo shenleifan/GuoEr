@@ -5,10 +5,11 @@
     android:id="@+id/fragment_fruit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="guoer.lf.ed.guoer.FruitFragment">
+    tools:context="guoer.lf.ed.guoer.view.FruitFragment">
 
-    <android.support.design.widget.AppBarLayout android:layout_width="match_parent"
-                                                android:layout_height="@dimen/appBar_default_height">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout_item" android:layout_width="match_parent"
+        android:layout_height="@dimen/appBar_default_height">
         <android.support.design.widget.CollapsingToolbarLayout android:id="@+id/collapsing_toolbar"
                                                                android:layout_width="match_parent"
                                                                android:layout_height="match_parent"

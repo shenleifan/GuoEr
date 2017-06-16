@@ -1,10 +1,12 @@
-package guoer.lf.ed.guoer;
+package guoer.lf.ed.guoer.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,20 +18,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import guoer.lf.ed.guoer.R;
 import guoer.lf.ed.guoer.logUtils.LogUtils;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FruitFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link FruitFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -42,6 +46,11 @@ public class FruitFragment extends Fragment {
     private static final String FRUIT_IMAGE_ID = "fruit_image_id";
 
     private static final String URL = "http://cn.bing.com/dict/search?q=%s&FORM=BDVSP2&qpvt=%s";
+    @BindView(R.id.appBarLayout_item)
+    AppBarLayout mAppBarLayoutItem;
+    Unbinder unbinder;
+    @BindView(R.id.item_floating_action_button)
+    FloatingActionButton mItemFloatingActionButton;
 
     // TODO: Rename and change types of parameters
     private String mFruitName;
@@ -100,10 +109,22 @@ public class FruitFragment extends Fragment {
         } else {
             LogUtils.d(TAG, "ActionBar Null");
         }
+        mAppBarLayoutItem = (AppBarLayout) view.findViewById(R.id.appBarLayout_item);
+        mAppBarLayoutItem.addOnOffsetChangedListener(new AppBarStateChangedListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                LogUtils.d(TAG, "state " + state);
+                if (state == State.COLLAPSE) {
+                    mItemFloatingActionButton.setVisibility(View.GONE);
+                } else {
+                    mItemFloatingActionButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(mFruitName);
-//        collapsingToolbarLayout.setExpandedTitleColor();
+
 
         ImageView fruitImageView = (ImageView) view.findViewById(R.id.fruit_image_view);
         Glide.with(getActivity()).load(mFruitImageId).into(fruitImageView);
@@ -114,6 +135,7 @@ public class FruitFragment extends Fragment {
         if (!TextUtils.isEmpty(mFruitName)) {
             webView.loadUrl(String.format(URL, mFruitName, mFruitName));
         }
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -157,6 +179,12 @@ public class FruitFragment extends Fragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     /**
