@@ -130,7 +130,7 @@ public class MainFragment extends Fragment {
         });
 
         //Handle recyclerview
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_main_fragment);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter = new FruitAdpater(mFruitList);
