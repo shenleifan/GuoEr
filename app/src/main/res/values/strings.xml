@@ -12,4 +12,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="item_des">item des</string>
+    <string name="name">Name:</string>
+    <string name="added_item_desc_hint">Please input word to add</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Sure">Sure</string>
 </resources>

@@ -11,12 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuoerActivity">
+        <activity android:name=".SplashActivity" android:theme="@style/Splash_AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".GuoerActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity android:name=".FruitActivity"
                   android:configChanges="keyboardHidden|orientation|screenSize">

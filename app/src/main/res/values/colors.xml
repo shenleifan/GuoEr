@@ -9,4 +9,5 @@
     <color name="progressWebView_progress_center">#3F51B5</color>
     <color name="progressWebView_progress_start">#303F9F</color>
     <color name="progressWebView_progress_end">#4169E1</color>
+    <color name="dialog_pop_divider">#00FFFFFF</color>
 </resources>

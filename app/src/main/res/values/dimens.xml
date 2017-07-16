@@ -10,4 +10,6 @@
     <dimen name="cardview_default_margin">5dp</dimen>
     <dimen name="appBar_default_height">250dp</dimen>
     <dimen name="progressWebView_radius">2dp</dimen>
+    <dimen name="button_shape_radius">4dp</dimen>
+    <dimen name="dialog_padding">15dp</dimen>
 </resources>
