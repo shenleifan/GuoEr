@@ -16,6 +16,7 @@
                       android:text="@string/name"/>
             <EditText style="@style/style_dialog_text" android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
+                      android:gravity="left"
                       android:hint="@string/added_item_desc_hint"/>
         </LinearLayout>
         <LinearLayout

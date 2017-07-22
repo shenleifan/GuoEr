@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import guoer.lf.ed.guoer.logUtils.LogUtils;
+import guoer.lf.ed.guoer.utils.LogUtils;
 import guoer.lf.ed.guoer.view.FruitFragment;
 
 public class FruitActivity extends SimpleBaseActivity implements FruitFragment.OnFragmentInteractionListener {

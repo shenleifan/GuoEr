@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import guoer.lf.ed.guoer.logUtils.LogUtils;
+import guoer.lf.ed.guoer.utils.LogUtils;
 import guoer.lf.ed.guoer.view.MainFragment;
 
 public class GuoerActivity extends SimpleBaseActivity implements MainFragment.OnFragmentInteractionListener{

@@ -1,13 +1,11 @@
 package guoer.lf.ed.guoer.view;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.text.TextUtils;
 import android.view.Display;
@@ -20,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import guoer.lf.ed.guoer.R;
-import guoer.lf.ed.guoer.logUtils.LogUtils;
+import guoer.lf.ed.guoer.utils.LogUtils;
 
 import static android.view.Gravity.CENTER;
 import static android.view.View.GONE;

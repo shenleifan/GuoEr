@@ -3,6 +3,7 @@
           package="guoer.lf.ed.guoer">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--<uses-permission android:name="android.permission.MANAGE_USERS"/>-->
     <application
         android:name=".GuoerApplication"
         android:allowBackup="true"

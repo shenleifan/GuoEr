@@ -1,4 +1,4 @@
-package guoer.lf.ed.guoer.logUtils;
+package guoer.lf.ed.guoer.utils;
 
 import android.util.Log;
 

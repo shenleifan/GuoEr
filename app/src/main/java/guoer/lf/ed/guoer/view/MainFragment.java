@@ -15,11 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -36,6 +39,7 @@ import guoer.lf.ed.guoer.items.FruitAdpater;
  * create an instance of this fragment.
  */
 public class MainFragment extends Fragment {
+    private static final String TAG = "MainFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,7 +53,7 @@ public class MainFragment extends Fragment {
 
     private FruitAdpater mAdapter;
 
-    private List<Fruit> mFruitList = new ArrayList<>();
+    private List<Fruit> mFruitList = new LinkedList<>();
     private SwipeRefreshLayout mSwipRefreshLayout;
 
     public MainFragment() {
@@ -77,6 +81,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -93,10 +98,12 @@ public class MainFragment extends Fragment {
                 new Fruit("lemon", R.drawable.lemon),
         };
         mFruitList.clear();
+        Fruit addFruit = new Fruit("Add", android.R.drawable.ic_input_add);
+        mFruitList.add(addFruit);
         for (int i = 0; i < 50; i++) {
             Random random = new Random();
             int index = random.nextInt(fruits.length);
-            mFruitList.add(fruits[index]);
+//            mFruitList.add(fruits[index]);
         }
     }
 
@@ -134,6 +141,9 @@ public class MainFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
+                TextView tv = new TextView(getActivity());
+                tv.setText("TextView");
+                builder.setContentView(tv);
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -146,10 +156,21 @@ public class MainFragment extends Fragment {
 
         //Handle recyclerview
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter = new FruitAdpater(mFruitList);
         recyclerView.setAdapter(mAdapter);
+//        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+//            @Override
+//            public void onChildViewAttachedToWindow(View view) {
+//                Log.d(TAG, "onChildViewAttachedToWindow: ");
+//            }
+//
+//            @Override
+//            public void onChildViewDetachedFromWindow(View view) {
+//                Log.d(TAG, "onChildViewDetachedFromWindow: ");
+//            }
+//        });
 
         mSwipRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout_main);
         mSwipRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary, null));

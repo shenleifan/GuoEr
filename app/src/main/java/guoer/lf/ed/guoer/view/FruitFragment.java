@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import guoer.lf.ed.guoer.R;
-import guoer.lf.ed.guoer.logUtils.LogUtils;
+import guoer.lf.ed.guoer.utils.LogUtils;
 
 
 /**

@@ -3,6 +3,7 @@ package guoer.lf.ed.guoer.items;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
+import guoer.lf.ed.guoer.BuildConfig;
 import guoer.lf.ed.guoer.FruitActivity;
 import guoer.lf.ed.guoer.R;
 import guoer.lf.ed.guoer.utils.NetworkUtils;
@@ -40,6 +44,11 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder> 
         holder.fruitName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (holder.fruitName.getText().equals("Add")) {
+                    AddData();
+                    FruitAdpater.this.notifyDataSetChanged();
+                    return;
+                }
                 if (NetworkUtils.isNetWorkAvailable(mContext)) {
 
                     int position = holder.getAdapterPosition();
@@ -53,6 +62,11 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder> 
         holder.fruitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (holder.fruitName.getText().equals("Add")) {
+                    AddData();
+                    FruitAdpater.this.notifyDataSetChanged();
+                    return;
+                }
                 if (NetworkUtils.isNetWorkAvailable(mContext)) {
 
                     int position = holder.getAdapterPosition();
@@ -95,5 +109,21 @@ public class FruitAdpater extends RecyclerView.Adapter<FruitAdpater.ViewHolder> 
             fruitName = (TextView) itemView.findViewById(R.id.item_name);
             fruitImage = (ImageView) itemView.findViewById(R.id.item_image);
         }
+    }
+    //Test data method
+    private void AddData() {
+        Fruit[] fruits = {
+                new Fruit("apple", R.drawable.apple),
+                new Fruit("orange", R.drawable.orange),
+                new Fruit("lemon", R.drawable.lemon),
+        };
+//            mFruitList.clear();
+//            Fruit addFruit = new Fruit("Add", android.R.drawable.ic_input_add);
+//            mFruitList.add(addFruit);
+//        for (int i = 0; i < 50; i++) {
+            Random random = new Random();
+            int index = random.nextInt(fruits.length);
+            mFruitList.add(fruits[index]);
+//        }
     }
 }
