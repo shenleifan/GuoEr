@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="guoer.lf.ed.guoer">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!--<uses-permission android:name="android.permission.MANAGE_USERS"/>-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- <uses-permission android:name="android.permission.MANAGE_USERS"/> -->
     <application
         android:name=".GuoerApplication"
         android:allowBackup="true"
@@ -12,18 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:theme="@style/Splash_AppTheme">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Splash_AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".GuoerActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize">
+        <activity
+            android:name=".GuoerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
-        <activity android:name=".FruitActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize">
+        <activity
+            android:name=".FruitActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
+
+        <service
+            android:name=".download.DownloadService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
