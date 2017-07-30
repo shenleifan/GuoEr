@@ -49,7 +49,7 @@
     </style>
 
     <style name="Splash_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+        <!--<item name="android:windowBackground">@drawable/splash_background</item>-->
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
