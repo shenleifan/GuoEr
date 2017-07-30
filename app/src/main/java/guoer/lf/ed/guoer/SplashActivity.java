@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -29,8 +30,10 @@ import okhttp3.Response;
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
     private Handler mHandler = new Handler();
+    private Runnable mRunnable;
     @BindView(R.id.image_splash)
     ImageView mImageSplash;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
 //            }
             String requestBingPic = "http://cn.bing.com/az/hprichbg/rb/RainbowLorikeets_ZH-CN10796666125_1920x1080.jpg";
             Glide.with(this).load(requestBingPic).into(mImageSplash);
-            mHandler.postDelayed(new Runnable() {
+            mHandler.postDelayed(mRunnable = new Runnable() {
                 @Override
                 public void run() {
                     startMainScreen();
@@ -64,6 +67,17 @@ public class SplashActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            startMainScreen();
+        }
+        if (mRunnable != null) {
+            mHandler.removeCallbacks(mRunnable);
+        }
+        return super.onTouchEvent(event);
     }
 
     private void startMainScreen() {
