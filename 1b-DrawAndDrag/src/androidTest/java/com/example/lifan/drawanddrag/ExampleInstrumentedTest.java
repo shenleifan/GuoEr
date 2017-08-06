@@ -1,4 +1,4 @@
-package guoer.lf.ed.guoer;
+package com.example.lifan.drawanddrag;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("guoer.lf.ed.guoer", appContext.getPackageName());
-
+        assertEquals("com.example.lifan.drawanddrag", appContext.getPackageName());
     }
 }

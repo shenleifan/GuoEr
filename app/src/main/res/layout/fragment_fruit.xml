@@ -29,13 +29,6 @@
                                                app:popupTheme="@style/AppTheme.popupTheme">
 
             </android.support.v7.widget.Toolbar>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/item_floating_action_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:src="@android:drawable/ic_media_play"/>
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -46,5 +39,12 @@
         <include layout="@layout/web_view"/>
     </android.support.v4.widget.NestedScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/item_floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_search"
+        app:layout_anchor="@id/appBarLayout_item"
+        app:layout_anchorGravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
